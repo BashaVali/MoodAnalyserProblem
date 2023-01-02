@@ -1,19 +1,29 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace MoodAnalyzerProblem
 {
-    public class MoodAnalyser
+    public class MoodAnalyzer
     {
-        string message;
-        public MoodAnalyser(string message)
+        public string message;
+        public MoodAnalyzer(string message)
         {
             this.message = message;
         }
-        public string AnalyzeMood()
+        public string AnalyserMood()
         {
-            if (message.ToLower().Contains("sad"))
-                return "Sad";
-            return "Happy";
+            try
+            {
+                if (message.ToLower().Contains("sad"))
+                    return "Sad";
+                else
+                    return "Happy";
+            }
+            catch
+            {
+                return "Happy";
+            }
         }
     }
 }
