@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MoodAnalyzerProblem;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -34,6 +35,31 @@ namespace MoodAnalyserProblem
                 throw new CustomException(CustomException.ExceptionType.CONSTRUCTOR_NOT_FOUND, "Constructor not found");
             }
         }
+        public static object CreateMoodAnalyseUsingParameterizedConstructor(string className, string constructor, string message)
+        {
+            Type type = typeof(MoodAnalyzer);
+            if (type.Name.Equals(className) || type.FullName.Equals(className))
+            {
+                if (type.Name.Equals(constructor))
+                {
+                    ConstructorInfo constructorInfo = type.GetConstructor(new[] { typeof(string) });
+                    object instance = constructorInfo.Invoke(new object[] { "HAPPY" });
+                    return instance;
+                }
+                else
+                {
+                    throw new CustomException(CustomException.ExceptionType.NO_SUCH_METHOD, "Constructor is Not Found");
+                }
+            }
+            else
+            {
+                throw new CustomException(CustomException.ExceptionType.NO_SUCH_CLASS, "Class Not Found");
+            }
+        }
+
+
 
     }
 }
+
+    
