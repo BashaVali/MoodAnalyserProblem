@@ -78,6 +78,42 @@ namespace MoodAnalyzerTest
             }
 
         }
+        /// <summary>
+        /// Using Reflection-UC4-Default Constructor
+        /// </summary>
+        [Test]
+        public void Reflection_Return_Default_Constructor_No_Class_Found()
+        {
+            string expected = "Class not found";
+            object obj = null;
+            try
+            {
+                MoodAnalyserReflection moodAnalyser = new MoodAnalyserReflection();
+                obj = moodAnalyser.CreateMoodAnalyserObject("MoodAnalyserProblem.MoodAnaly", "MoodAnaly");
+
+            }
+            catch (CustomException actual)
+
+            {
+                Assert.AreEqual(expected, actual.Message);
+            }
+        }
+        [Test]
+        public void Reflection_Return_Default_Constructor_No_Constructor_Found()
+        {
+            string expected = "Constructor not found";
+            object obj = null;
+            try
+            {
+                MoodAnalyserReflection moodAnalyser = new MoodAnalyserReflection();
+                obj = moodAnalyser.CreateMoodAnalyserObject("MoodAnalyserProblem.MoodAnalyser", "MoodAnaly");
+
+            }
+            catch (CustomException actual)
+            {
+                Assert.AreEqual(expected, actual.Message);
+            }
+        }
 
     }
 }
